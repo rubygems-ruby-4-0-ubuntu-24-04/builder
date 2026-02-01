@@ -6,7 +6,7 @@ on:
         description: "Gem name to build"
         type: string
         required: true
-      name:
+      version:
         description: "Gem version to build"
         type: string
         required: true
