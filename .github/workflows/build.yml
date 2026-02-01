@@ -27,6 +27,7 @@ jobs:
           docker compose run --rm build ${{ inputs.name }} ${{ inputs.version }}
       - name: Prepare
         run: |
+          mkdir -p ~/.gem
           cat <<CREDENTIALS > ~/.gem/credentials
           ---
           :github: Bearer ${{ github.token }}
