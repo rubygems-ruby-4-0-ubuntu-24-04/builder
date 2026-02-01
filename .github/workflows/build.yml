@@ -1,0 +1,36 @@
+name: Build
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Gem name to build"
+        type: string
+        required: true
+      name:
+        description: "Gem version to build"
+        type: string
+        required: true
+permissions:
+  packages: write
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build
+        run: |
+          docker compose run --rm build ${{ inputs.name }} ${{ inputs.version }}
+      - name: Prepare
+        run: |
+          cat <<CREDENTIALS > ~/.gem/credentials
+          ---
+          :github: Bearer ${{ github.token }}
+          CREDENTIALS
+      - name: Push
+        run: |
+          gem push \
+            --key github \
+            --host https://rubygems.pkg.github.com/${GITHUB_REPOSITORY_OWNER} \
+            ${{ inputs.name }}-${{ inputs.version }}-*.gem

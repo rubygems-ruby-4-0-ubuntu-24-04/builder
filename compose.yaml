@@ -1,0 +1,8 @@
+services:
+  build:
+    build:
+      context: .
+    volumes:
+      - .:/host:delegated
+    entrypoint:
+      - /host/build.sh
