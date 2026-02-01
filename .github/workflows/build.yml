@@ -32,6 +32,7 @@ jobs:
           ---
           :github: Bearer ${{ github.token }}
           CREDENTIALS
+          chmod go-rwx ~/.gem/credentials
       - name: Push
         run: |
           gem push \
