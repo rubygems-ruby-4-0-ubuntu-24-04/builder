@@ -38,5 +38,5 @@ jobs:
         run: |
           gem push \
             --key cloudsmith \
-            --host https://ruby.cloudsmith.io/rubygems-precompiled-gems/ruby-4-0-amd4-ubuntu-24-04 \
+            --host https://ruby.cloudsmith.io/rubygems-precompiled-gems/ruby-4-0-amd64-ubuntu-24-04 \
             ${{ inputs.name }}-${{ inputs.version }}-*.gem
