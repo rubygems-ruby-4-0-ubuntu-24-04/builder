@@ -26,6 +26,10 @@ jobs:
       - name: Build binary gem
         run: |
           docker compose run --rm build ${{ inputs.name }} ${{ inputs.version }}
+      - uses: actions/upload-artifact@v6
+        with:
+          name: gem
+          path: ${{ inputs.name }}-${{ inputs.version }}-*.gem
       - name: Prepare
         run: |
           mkdir -p ~/.gem
