@@ -35,7 +35,7 @@ jobs:
           mkdir -p ~/.gem
           cat <<CREDENTIALS > ~/.gem/credentials
           ---
-          :cloudsmith: ${{ secrets.CLOUDSMITH_API_KEY }}
+          :cloudsmith: Bearer ${{ secrets.CLOUDSMITH_API_KEY }}
           CREDENTIALS
           chmod go-rwx ~/.gem/credentials
       - name: Push
