@@ -17,6 +17,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    environment: release
     steps:
       - uses: actions/checkout@v6
       - name: Build Docker image
@@ -30,12 +31,12 @@ jobs:
           mkdir -p ~/.gem
           cat <<CREDENTIALS > ~/.gem/credentials
           ---
-          :github: Bearer ${{ github.token }}
+          :cloudsmith: ${{ secrets.CLOUDSMITH_API_KEY }}
           CREDENTIALS
           chmod go-rwx ~/.gem/credentials
       - name: Push
         run: |
           gem push \
-            --key github \
-            --host https://rubygems.pkg.github.com/${GITHUB_REPOSITORY_OWNER} \
+            --key cloudsmith \
+            --host https://ruby.cloudsmith.io/rubygems-precompiled-gems/ruby-4-0-amd4-ubuntu-24-04 \
             ${{ inputs.name }}-${{ inputs.version }}-*.gem
