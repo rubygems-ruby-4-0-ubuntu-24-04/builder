@@ -49,11 +49,14 @@ jobs:
     name: Build
     needs:
       - check
-    if: needs.check.outputs.is-extension
+    if: needs.check.outputs.is-extension == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     environment: release
     steps:
+      - name: Debug
+        run: |
+          echo "${{ toJSON(needs.check.outputs) }}"
       - uses: actions/checkout@v6
       - name: Build Docker image
         run: |
