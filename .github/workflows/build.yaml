@@ -30,7 +30,6 @@ jobs:
           NAME: ${{ inputs.name }}
           VERSION: ${{ inputs.version }}
         run: |
-          set -x
           # "gem fetch" may be failed if this workflow is submitted by
           # rubygems.org's webhook because the target gem isn't
           # registered on rubygems.org yet.
@@ -54,9 +53,6 @@ jobs:
     timeout-minutes: 10
     environment: release
     steps:
-      - name: Debug
-        run: |
-          echo "${{ toJSON(needs.check.outputs) }}"
       - uses: actions/checkout@v6
       - name: Build Docker image
         run: |
