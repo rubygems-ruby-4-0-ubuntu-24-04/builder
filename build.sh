@@ -11,8 +11,8 @@ case "${name}" in
   psych) system_dependencies+=(libyaml-dev);;
 esac
 if [ ${#system_dependencies[@]} -gt 0 ]; then
-  sudo apt update
-  sudo apt install -y -V "${system_dependencies[@]}"
+  apt update
+  apt install -y -V "${system_dependencies[@]}"
 fi
 gem build_binary ${name}-${version}.gem
 cp ${name}-${version}-*.gem /host/
