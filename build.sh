@@ -14,5 +14,7 @@ if [ ${#system_dependencies[@]} -gt 0 ]; then
   apt update
   apt install -y -V "${system_dependencies[@]}"
 fi
+gem sources \
+  --add https://rubygems.pkg.github.com/rubygems-ruby-4-0-ubuntu-24-04
 gem build_binary ${name}-${version}.gem
 cp ${name}-${version}-*.gem /host/
