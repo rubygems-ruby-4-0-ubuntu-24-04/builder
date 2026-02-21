@@ -31,7 +31,7 @@ jobs:
           # rubygems.org's webhook because the target gem isn't
           # registered on rubygems.org yet.
           n_tries=0
-          while ! gem fetch ${NAME}:${VERSION}; then
+          while ! gem fetch ${NAME}:${VERSION}; do
             n_tries=$[n_tries + 1]
             if [ ${n_tries} -gt 5 ]; then
               exit 1
