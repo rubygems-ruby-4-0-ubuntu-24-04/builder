@@ -13,8 +13,29 @@ on:
 permissions:
   packages: write
 jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      is-extension: ${{ step.info.outputs.is-extension }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Info
+        id: info
+        env:
+          NAME: ${{ inputs.name }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          gem fetch ${NAME}:${VERSION}
+          gem specification ${NAME}-${VERSION}.gem > spec.yaml
+          is_extension=$(ruby -e 'puts !Gem::Specification.from_yaml(ARGF).extensions.empty?' spec.yaml)
+          echo "is-extension=${is_extension}" >> ${GITHUB_OUTPUT}
   build:
     name: Build
+    needs:
+      - check
+    if: needs.check.outputs.is-extension
     runs-on: ubuntu-latest
     timeout-minutes: 10
     environment: release
