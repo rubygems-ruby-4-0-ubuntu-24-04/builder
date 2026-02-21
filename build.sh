@@ -15,6 +15,6 @@ if [ ${#system_dependencies[@]} -gt 0 ]; then
   apt install -y -V "${system_dependencies[@]}"
 fi
 gem sources \
-  --add https://rubygems.pkg.github.com/rubygems-ruby-4-0-ubuntu-24-04
+  --add https://dl.cloudsmith.io/public/rubygems-precompiled-gems/ruby-4-0-amd64-ubuntu-24-04/ruby/
 gem build_binary ${name}-${version}.gem
 cp ${name}-${version}-*.gem /host/
