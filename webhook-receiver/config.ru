@@ -25,7 +25,10 @@ class WebhookReceiver
   end
 
   def submit_build_job(name, version)
-    url = "https://api.github.com/repos/rubygems-ruby-4-0-ubuntu-24-04/builder/actions/workflows/build.yaml/dispatches"
+    user = "rubygems-ruby-4-0-ubuntu-24-04"
+    repository = "builder"
+    workflow = "build.yaml"
+    url = "https://api.github.com/repos/#{user}/#{repository}/actions/workflows/#{workflow}/dispatches"
     data = {
       "ref" => "main",
       "inputs" => {
