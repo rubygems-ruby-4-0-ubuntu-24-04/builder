@@ -9,7 +9,8 @@ RUN \
   apt-get install -y \
     g++ \
     gcc \
-    make && \
+    make \
+    rust-all && \
   gem install \
     rubygems-build-binary \
     rubygems-requirements-system && \
