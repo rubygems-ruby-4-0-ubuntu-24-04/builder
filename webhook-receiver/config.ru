@@ -1,7 +1,7 @@
 # -*- ruby -*-
 
 require "json"
-require "open-uri"
+require "net-http"
 
 class WebhookReceiver
   def initialize
@@ -41,7 +41,7 @@ class WebhookReceiver
       "authorization" => "Bearer #{github_token}",
       "content-type" => "application/json",
     }
-    Net::HTTP.post(url, data.to_json, headers)
+    Net::HTTP.post(URI(url), data.to_json, headers)
   end
 
   def base_dir
