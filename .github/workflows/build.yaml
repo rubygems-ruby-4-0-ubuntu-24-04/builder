@@ -39,7 +39,7 @@ jobs:
             if [ ${n_tries} -gt 5 ]; then
               exit 1
             fi
-            sleep 10
+            sleep 60
           done
           gem specification ${NAME}-${VERSION}.gem > spec.yaml
           is_extension=$(ruby -e 'puts !Gem::Specification.from_yaml(ARGF).extensions.empty?' spec.yaml)
