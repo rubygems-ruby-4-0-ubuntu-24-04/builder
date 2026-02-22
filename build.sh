@@ -5,7 +5,7 @@ set -eux
 name=$1
 version=$2
 
-gem fetch ${name}:${version}
+gem fetch --platform=ruby ${name}:${version}
 gem_build_binary_options=()
 case "${name}" in
   psych)
