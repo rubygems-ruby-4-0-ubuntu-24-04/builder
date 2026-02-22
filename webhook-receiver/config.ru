@@ -17,6 +17,7 @@ class WebhookReceiver
   def process(request)
     data = request.body.read
     gem_info = JSON.parse(data)
+    return unless gem_info["platform"] == "ruby"
     submit_build_job(gem_info["name"], gem_info["version"])
   end
 
