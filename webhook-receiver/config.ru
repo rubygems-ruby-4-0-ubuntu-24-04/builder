@@ -1,7 +1,7 @@
 # -*- ruby -*-
 
 require "json"
-require "net-http"
+require "net/http"
 
 class WebhookReceiver
   def initialize
