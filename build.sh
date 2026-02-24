@@ -24,7 +24,7 @@ case "${name}" in
       ;;
 esac
 gem sources \
-  --add https://dl.cloudsmith.io/public/rubygems-precompiled-gems/ruby-4-0-amd64-ubuntu-24-04/ruby/
+  --prepend https://dl.cloudsmith.io/public/rubygems-precompiled-gems/ruby-4-0-amd64-ubuntu-24-04/ruby/
 gem build_binary \
   "${gem_build_binary_options[@]}" \
   ${name}-${version}.gem \
