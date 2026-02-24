@@ -12,6 +12,7 @@ RUN \
     make \
     rust-all && \
   gem install \
+    rb_sys \
     rubygems-build-binary \
     rubygems-requirements-system && \
   apt-get clean && \
