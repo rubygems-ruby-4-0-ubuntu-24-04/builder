@@ -7,6 +7,7 @@ version=$2
 
 gem fetch --platform=ruby ${name}:${version}
 gem_build_binary_options=()
+gem_build_options=(--)
 case "${name}" in
   psych)
       gem_build_binary_options+=(--add-requirement)
@@ -15,9 +16,13 @@ case "${name}" in
   ruby_tree_sitter)
       gem_build_binary_options+=(--add-requirement)
       gem_build_binary_options+=("system: tree-sitter: ubuntu: libtree-sitter-dev")
+      gem_build_options+=(--enable-sys-libs)
       ;;
 esac
 gem sources \
   --add https://dl.cloudsmith.io/public/rubygems-precompiled-gems/ruby-4-0-amd64-ubuntu-24-04/ruby/
-gem build_binary "${gen_build_binary_options[@]}" ${name}-${version}.gem
+gem build_binary \
+  "${gem_build_binary_options[@]}" \
+  ${name}-${version}.gem \
+  "${gem_build_options[@]}"
 cp ${name}-${version}-*.gem /host/
