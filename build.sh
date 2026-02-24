@@ -12,6 +12,10 @@ case "${name}" in
       gem_build_binary_options+=(--add-requirement)
       gem_build_binary_options+=("system: yaml-1.0: ubuntu: libyaml-dev")
       ;;
+  ruby_tree_sitter)
+      gem_build_binary_options+=(--add-requirement)
+      gem_build_binary_options+=("system: tree-sitter: ubuntu: libtree-sitter-dev")
+      ;;
 esac
 gem sources \
   --add https://dl.cloudsmith.io/public/rubygems-precompiled-gems/ruby-4-0-amd64-ubuntu-24-04/ruby/
