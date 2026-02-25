@@ -9,6 +9,7 @@ RUN \
   apt-get install -y \
     g++ \
     gcc \
+    llvm \
     make \
     rust-all && \
   gem install \
