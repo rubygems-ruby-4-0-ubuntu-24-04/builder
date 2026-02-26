@@ -11,7 +11,7 @@ RUN \
     gcc \
     llvm \
     make \
-    rust-all && \
+    rust-1.89-all && \
   gem install \
     rb_sys \
     rubygems-build-binary \
