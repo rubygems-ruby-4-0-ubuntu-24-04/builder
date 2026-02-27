@@ -13,6 +13,8 @@ RUN \
     gcc \
     llvm \
     make \
+    meson \
+    ninja \
     rust-1.89-all \
     rustup && \
   gem install \
