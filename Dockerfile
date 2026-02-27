@@ -14,7 +14,7 @@ RUN \
     llvm \
     make \
     meson \
-    ninja \
+    ninja-build \
     rust-1.89-all \
     rustup && \
   gem install \
