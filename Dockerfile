@@ -7,6 +7,7 @@ RUN \
 RUN \
   apt-get update && \
   apt-get install -y \
+    clang \
     g++ \
     gcc \
     llvm \
