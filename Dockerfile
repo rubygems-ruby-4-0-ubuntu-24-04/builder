@@ -15,7 +15,8 @@ RUN \
     make \
     meson \
     ninja-build \
-    rustup && \
+    rustup \
+    zlib1g-dev && \
   rustup default stable && \
   gem install \
     rb_sys \
