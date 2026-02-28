@@ -7,7 +7,6 @@ RUN \
 RUN \
   apt-get update && \
   apt-get install -y \
-    cargo \
     clang \
     cmake \
     g++ \
@@ -16,7 +15,8 @@ RUN \
     make \
     meson \
     ninja-build \
-    rust-1.89-all && \
+    rustup && \
+  rustup default stable && \
   gem install \
     rb_sys \
     rubygems-build-binary \
