@@ -13,6 +13,10 @@ case "${name}" in
       gem_build_binary_options+=(--add-requirement)
       gem_build_binary_options+=("system: yaml-1.0: ubuntu: libyaml-dev")
       ;;
+  rkerberos)
+      gem_build_binary_options+=(--add-requirement)
+      gem_build_binary_options+=("system: krb5: ubuntu: libkrb5-dev")
+      ;;
   ruby-libgd)
       gem_build_binary_options+=(--add-requirement)
       gem_build_binary_options+=("system: gdlib: ubuntu: libgd-dev")
