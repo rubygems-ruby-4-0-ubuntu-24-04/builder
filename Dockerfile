@@ -9,6 +9,7 @@ RUN \
   apt-get install -y \
     clang \
     cmake \
+    curl \
     g++ \
     gcc \
     llvm \
