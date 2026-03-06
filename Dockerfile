@@ -12,6 +12,7 @@ RUN \
     curl \
     g++ \
     gcc \
+    libssl-dev \
     llvm \
     make \
     meson \
