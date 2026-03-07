@@ -9,6 +9,10 @@ gem fetch --platform=ruby ${name}:${version}
 gem_build_binary_options=()
 gem_build_options=(--)
 case "${name}" in
+  pg)
+      gem_build_binary_options+=(--add-requirement)
+      gem_build_binary_options+=("system: libpq: ubuntu: libpq-dev")
+      ;;
   psych)
       gem_build_binary_options+=(--add-requirement)
       gem_build_binary_options+=("system: yaml-1.0: ubuntu: libyaml-dev")
