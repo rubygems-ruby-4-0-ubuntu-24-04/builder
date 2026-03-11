@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     outputs:
-      is-extension: ${{ steps.info.outputs.is-extension }}
+      need-build: ${{ steps.info.outputs.need-build }}
     steps:
       - uses: actions/checkout@v6
       - uses: ruby/setup-ruby@v1
@@ -43,12 +43,17 @@ jobs:
           done
           gem specification ${NAME}-${VERSION}.gem > spec.yaml
           is_extension=$(ruby -e 'puts !Gem::Specification.from_yaml(ARGF).extensions.empty?' spec.yaml)
-          echo "is-extension=${is_extension}" >> ${GITHUB_OUTPUT}
+          is_pushable=$(ruby -e 'puts !Gem::Specification.from_yaml(ARGF).metadata.key?("allowed_push_host")' spec.yaml)
+          if [ "${is_extension}" = "true" ] -a [ "${is_pushable}" = "true" ]; then
+            echo "need-build=true" >> ${GITHUB_OUTPUT}
+          else
+            echo "need-build=false" >> ${GITHUB_OUTPUT}
+          fi
   build:
     name: Build
     needs:
       - check
-    if: needs.check.outputs.is-extension == 'true'
+    if: needs.check.outputs.need-build == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     environment: release
