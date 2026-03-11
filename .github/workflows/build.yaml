@@ -20,6 +20,10 @@ jobs:
     outputs:
       need-build: ${{ steps.info.outputs.need-build }}
     steps:
+      - name: Show summary
+        run: |
+          url="https://rubygems.org/gems/${{ inputs.name }}/versions/${{ inputs.version }}"
+          echo "* RubyGems: ${url}" | tee -a  ${GITHUB_STEP_SUMMARY}
       - uses: actions/checkout@v6
       - uses: ruby/setup-ruby@v1
         with:
@@ -58,10 +62,6 @@ jobs:
     timeout-minutes: 10
     environment: release
     steps:
-      - name: Show summary
-        run: |
-          url="https://rubygems.org/gems/${{ inputs.name }}/versions/${{ inputs.version }}"
-          echo "* RubyGems: ${url}" | tee -a  ${GITHUB_STEP_SUMMARY}
       - uses: actions/checkout@v6
       - name: Build Docker image
         run: |
