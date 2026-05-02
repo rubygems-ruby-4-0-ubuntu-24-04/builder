@@ -48,7 +48,7 @@ jobs:
           gem specification ${NAME}-${VERSION}.gem > spec.yaml
           is_extension=$(ruby -e 'puts !Gem::Specification.from_yaml(ARGF).extensions.empty?' spec.yaml)
           is_pushable=$(ruby -e 'puts !Gem::Specification.from_yaml(ARGF).metadata.key?("allowed_push_host")' spec.yaml)
-          if [ "${is_extension}" = "true" ] -a [ "${is_pushable}" = "true" ]; then
+          if [ "${is_extension}" = "true" ] && [ "${is_pushable}" = "true" ]; then
             echo "need-build=true" >> ${GITHUB_OUTPUT}
           else
             echo "need-build=false" >> ${GITHUB_OUTPUT}
