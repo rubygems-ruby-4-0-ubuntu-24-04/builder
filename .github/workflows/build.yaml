@@ -1,4 +1,4 @@
-name: Build ${{ inputs.name }} ${{ inputs.version }}
+name: Build
 on:
   workflow_dispatch:
     inputs:
@@ -14,7 +14,7 @@ permissions:
   packages: write
 jobs:
   check:
-    name: Check
+    name: Check ${{ inputs.name }} ${{ inputs.version }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     outputs:
@@ -54,7 +54,7 @@ jobs:
             echo "need-build=false" >> ${GITHUB_OUTPUT}
           fi
   build:
-    name: Build
+    name: Build ${{ inputs.name }} ${{ inputs.version }}
     needs:
       - check
     if: needs.check.outputs.need-build == 'true'
