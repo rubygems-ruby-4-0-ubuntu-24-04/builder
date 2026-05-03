@@ -69,7 +69,7 @@ jobs:
       - name: Build binary gem
         run: |
           docker compose run --rm build ${{ inputs.name }} ${{ inputs.version }}
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: gem
           path: ${{ inputs.name }}-${{ inputs.version }}-*.gem
